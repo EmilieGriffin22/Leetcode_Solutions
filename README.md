@@ -1,2 +1,2 @@
 # Leetcode_Solutions
-A collection of my solutions to various Leetcode problems.
+A collection of my solutions to various Leetcode problems, organized by programming language and difficulty level.

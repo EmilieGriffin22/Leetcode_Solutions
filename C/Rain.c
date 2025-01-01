@@ -23,5 +23,4 @@ int trap(int* height, int heightSize) {
     }
 
     return water; 
-    
 }

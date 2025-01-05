@@ -41,3 +41,34 @@ def fullJustify(self, words, maxWidth):
         lines[i] = newline
 
     return lines
+
+
+#Better Solution: Removes some loops and unessecary variables. 
+#Time complexity: O(N)
+#Space complexity: O(N)
+def fullJustify(self, words, maxWidth):
+    #First, we need to figure out what words will go on what line. 
+    lines = [] 
+    i = 0 
+    while i < len(words): #Each word in words will be consdiered once -> O(N)
+        line = []
+        line_len = 0 
+        while i < len(words) and (line_len + len(words[i])) <= maxWidth: 
+            line.append(words[i] + " ")
+            line_len += len(words[i]) + 1
+            i += 1 
+        line[-1] = line[-1][:-1]
+        #Add the extra spaces. 
+        diff = maxWidth - (line_len - 1)
+        if i == len(words) or len(line) == 1: #The last line or a line with one word. 
+            line.append(' ' * diff)
+        else: 
+            extra_spaces_per_space = diff // (len(line) - 1)
+            more_spaces_needed = diff % (len(line) - 1)
+            for j in range(len(line) - 1): #Len(line) is a constant, as it must be <= maxWidth. Whole loop is therefore O(1). 
+                line[j] += " " * extra_spaces_per_space
+                if more_spaces_needed > 0: 
+                    line[j] += " "
+                    more_spaces_needed -= 1 #Will never need to give a word more than one extra space. 
+        lines.append("".join(line))
+    return lines

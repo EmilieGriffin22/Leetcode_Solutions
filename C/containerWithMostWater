@@ -1,0 +1,20 @@
+//Original accepted + efficient solution. 
+int maxArea(int* height, int heightSize) {
+    int p1 = 0; 
+    int p2 = heightSize - 1; 
+    int maxHold = 0; 
+    while (p1 < p2) {
+        if (height[p1] < height[p2]){ 
+            if ((height[p1] * (p2 - p1)) > maxHold) {
+                maxHold = height[p1] * (p2 - p1);  
+            }
+            p1 += 1;
+        } else {
+            if ((height[p2] * (p2 - p1)) > maxHold) {
+                maxHold = height[p2] * (p2 - p1); 
+            }
+            p2 -= 1; 
+        }
+    }
+    return maxHold;   
+}
